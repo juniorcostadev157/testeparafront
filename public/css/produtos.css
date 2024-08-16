@@ -1,0 +1,219 @@
+/* Estilos gerais */
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('../images/backgroundlogin.avif');
+  background-size: cover;
+}
+
+/* Estilos da barra lateral */
+.sidebar {
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  position: fixed;
+  height: 100%;
+}
+
+.sidebar h2 {
+  color: white;
+  text-align: center;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos do conteúdo principal */
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+  width: calc(100% - 270px);
+}
+
+h1 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Estilos da caixa de busca */
+.search-box {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-box textarea {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-box button {
+  padding: 10px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+/* Estilos dos botões */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buttons label {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.buttons input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.green-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.red-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.blue-button {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Estilos dos equipamentos */
+.equipamento {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.equipamento-details {
+  display: flex;
+  align-items: center;
+}
+
+.equipamento-details input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.equipamento-actions button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.equipamento-actions .transfer {
+  background-color: #007bff;
+  color: white;
+}
+
+.equipamento-actions .edit {
+  background-color: #28a745;
+  color: white;
+}
+
+.equipamento-actions .delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Estilos da paginação */
+.pagination {
+  text-align: center;
+  color: white;
+}
+
+.pagination span {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.Swal {
+  z-index: 10000;
+}
+
+/* Estilos da caixa de importação */
+.import-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.import-box input[type="file"] {
+  margin-right: 10px;
+}
+
+.import-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+#userName {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Estilos do dropdown e contagem de equipamentos */
+.custom-dropdown {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f8f9fa;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.equip-count {
+  color: white;
+  font-weight: bold;
+}
+.swal2-container .swal2-html-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.swal2-input {
+  text-transform: uppercase;
+}

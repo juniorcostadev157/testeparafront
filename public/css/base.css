@@ -1,0 +1,375 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../images/backgroundlogin.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    overflow-x: hidden; /* Impede a barra de rolagem horizontal */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    position: fixed;
+    top: 0; 
+    height: 100%;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Adiciona transição suave */
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-content {
+    margin-left: 280px; /* Ajusta a margem esquerda para a largura da sidebar */
+    padding: 20px;
+    width: calc(100% - 280px); /* A largura do conteúdo principal é o restante da tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    height: 100%;
+}
+
+h1 {
+    color: rgb(253, 252, 252); 
+    margin-bottom: 20px;
+}
+
+/* Estilos da caixa de importação */
+.import-box {
+    background-color: rgba(14, 14, 14, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%; /* Ocupa toda a largura disponível */
+    box-sizing: border-box; /* Inclui padding na largura total */
+    margin-top: 20px;
+}
+
+.import-box input[type="file"] {
+    margin-right: 10px;
+}
+
+.import-box button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease; /* Adiciona transição suave */
+}
+
+.import-box button:hover {
+    background-color: #0056b3; /* Cor de hover do botão */
+}
+
+#feedback {
+    margin-top: 20px;
+}
+
+/* Estilos para o botão Criar Usuário */
+#criarUsuarioBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#criarUsuarioBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para a lista de usuários */
+.user-list {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.user-item {
+    background-color: white; /* Alterado para branco */
+    color: black; /* Alterado para preto */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-item .user-info {
+    flex: 1;
+}
+
+.user-item .user-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.user-item .edit-btn {
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-item .edit-btn:hover {
+    background-color: #218838;
+}
+
+.user-item .delete-btn {
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-item .delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para o pop-up */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 5px;
+    color: black;
+    position: relative;
+}
+
+.modal-content input,
+.modal-content select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Adicione esta seção para garantir que o texto dos campos de entrada seja visível */
+input[type="text"], input[type="email"], input[type="password"], select {
+    color: black; /* Define a cor do texto como preto */
+    background-color: white; /* Adiciona uma cor de fundo para melhor visibilidade */
+}
+
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Adiciona transição suave */
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.search-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.movimentacoes-list {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.movimentacao-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Fundo branco */
+    color: black; /* Texto preto */
+    border-radius: 5px; /* Borda arredondada */
+}
+
+.movimentacao-details {
+    flex: 1;
+    margin-right: 10px; /* Ajuste a margem direita para afastar do botão */
+}
+
+.movimentacao-actions button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f82905;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.movimentacao-actions button:hover {
+    background-color: #343536;
+}
+.solicitacoes-list {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.solicitacao-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Fundo branco */
+    color: black; /* Texto preto */
+    border-radius: 5px; /* Borda arredondada */
+}
+
+.solicitacao-details {
+    flex: 1;
+    margin-right: 10px; /* Ajuste a margem direita para afastar do botão */
+}
+
+.solicitacao-actions button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f82905;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.solicitacao-actions button:hover {
+    background-color: #343536;
+}
+
+.select-container {
+    margin-bottom: 20px;
+}
+
+.select-container select {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.select-container select:hover {
+    background-color: #0056b3;
+}

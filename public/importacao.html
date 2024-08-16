@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importação de Equipamentos</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+    <div class="menu-container top"></div>
+    <div class="main-content">
+        <h1>Importação de Equipamentos</h1>
+        <div class="import-box">
+            <input type="file" id="fileInput" accept=".xlsx">
+            <button id="importButton">Importar</button>
+        </div>
+        <div id="feedback"></div>
+        <div id="loadingMessage" style="display: none; font-size: 24px; font-weight: bold; color: #fff; background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 5px; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+            Carregando, por favor aguarde...
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/menuLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const idToken = localStorage.getItem('idToken');
+            if (!idToken) {
+                window.location.href = 'index.html';
+            } else {
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        firebase.firestore().collection('Usuarios').doc(user.uid).get().then((doc) => {
+                            if (doc.exists) {
+                                const userData = doc.data();
+                                if (userData.Tipo === 'ALMOX' || userData.Tipo === 'ADMIN') {
+                                    initializePage();
+                                } else {
+                                    toastr.error('Acesso negado. Você não tem permissão para acessar esta página.');
+                                    firebase.auth().signOut().then(() => {
+                                        window.location.href = 'index.html';
+                                    });
+                                }
+                            } else {
+                                toastr.error('Erro ao verificar o tipo de usuário.');
+                                firebase.auth().signOut().then(() => {
+                                    window.location.href = 'index.html';
+                                });
+                            }
+                        }).catch((error) => {
+                            console.error('Erro ao obter dados do usuário:', error);
+                            toastr.error('Erro ao verificar o tipo de usuário.');
+                            firebase.auth().signOut().then(() => {
+                                window.location.href = 'index.html';
+                            });
+                        });
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+        });
+
+        function initializePage() {
+            document.getElementById('importButton').addEventListener('click', () => {
+                const fileInput = document.getElementById('fileInput');
+                if (!fileInput.files.length) {
+                    toastr.error('Por favor, selecione um arquivo para importar.');
+                    return;
+                }
+
+                // Mostrar mensagem de carregamento
+                document.getElementById('loadingMessage').style.display = 'block';
+
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+
+                fetch('/api/import', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    document.getElementById('loadingMessage').style.display = 'none'; // Esconder mensagem de carregamento
+                    if (response.ok) {
+                        toastr.success('Importação realizada com sucesso!');
+                    } else {
+                        toastr.error('Erro ao importar o arquivo.');
+                    }
+                }).catch(error => {
+                    document.getElementById('loadingMessage').style.display = 'none'; // Esconder mensagem de carregamento
+                    console.error('Erro ao importar o arquivo:', error);
+                    toastr.error('Erro ao importar o arquivo.');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

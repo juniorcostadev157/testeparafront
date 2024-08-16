@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="css/produtos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script type="module" src="js/firebaseConfig.js"></script>
+    <script type="module" src="js/menuLoader.js" defer></script>
+    <script type="module" src="js/frontend.js" defer></script>
+</head>
+<body>
+    <div class="menu-container"></div>
+    <div class="main-content">
+        <h1>Equipamentos</h1>
+        <div class="search-box">
+            <textarea id="searchInput" placeholder="Digite aqui sua busca (um serial por linha)" rows="3"></textarea>
+            <button id="searchButton">Buscar</button>
+        </div>
+        <div class="buttons">
+            <label for="selectAll"><input type="checkbox" id="selectAll"> Selecionar Todos</label>
+            <button class="green-button" id="receberEquipamentos">Receber Equipamentos</button>
+            <button class="red-button" id="apagarSelecionados">Excluir Selecionados</button>
+            <button class="blue-button" id="transferirSelecionados">Transferir Selecionados</button>
+            <select id="statusFilter" class="custom-dropdown">
+                <option value="ALL">TODOS</option>
+                <option value="INICIALIZADO">INICIALIZADO</option>
+                <option value="SUSPEITO">SUSPEITO</option>
+                <option value="INUTILIZADO">INUTILIZADO</option>
+                <option value="PERDA">PERDA</option>
+                <option value="COM DEFEITO">COM DEFEITO</option>
+                <option value="TRANSITO REVERSA">TRANSITO REVERSA</option>
+            </select>
+            <span class="equip-count">Quant. de Equipamentos: <span id="equipCount">0</span></span>
+        </div>
+        
+        <div class="pagination top-pagination">
+            <!-- A paginação será inserida aqui -->
+        </div>
+        <div id="equipamentos">
+            <!-- Conteúdo dos equipamentos será inserido aqui pelo JavaScript -->
+        </div>
+        <div class="pagination bottom-pagination">
+            <!-- A paginação será inserida aqui -->
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</body>
+</html>
